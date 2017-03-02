@@ -5,14 +5,15 @@ php:
   - nightly
 
 env:
-  - APP_ENV=testing
-  - APP_KEY=SomeRandomString
-  - DB_CONNECTION=testing
-  - DB_TEST_USERNAME=root
-  - DB_TEST_PASSWORD=
-  - CACHE_DRIVER=array
-  - SESSION_DRIVER=array
-  - QUEUE_DRIVER=sync
+  global:
+    - APP_ENV=testing
+    - APP_KEY=SomeRandomString
+    - DB_CONNECTION=testing
+    - DB_TEST_USERNAME=root
+    - DB_TEST_PASSWORD=
+    - CACHE_DRIVER=array
+    - SESSION_DRIVER=array
+    - QUEUE_DRIVER=sync
 
 sudo: false
 
