@@ -3,16 +3,16 @@ language: php
 php:
   - 7.1
 
-env:
-  global:
-    - APP_ENV=testing
-    - APP_KEY=abcdefghijklmnopqrstuvwxyz123456
-    - DB_CONNECTION=testing
-    - DB_TEST_USERNAME=root
-    - DB_TEST_PASSWORD=
-    - CACHE_DRIVER=array
-    - SESSION_DRIVER=array
-    - QUEUE_DRIVER=sync
+# env:
+#   global:
+#     - APP_ENV=testing
+#     - APP_KEY=abcdefghijklmnopqrstuvwxyz123456
+#     - DB_CONNECTION=testing
+#     - DB_TEST_USERNAME=root
+#     - DB_TEST_PASSWORD=
+#     - CACHE_DRIVER=array
+#     - SESSION_DRIVER=array
+#     - QUEUE_DRIVER=sync
 
 sudo: false
 
