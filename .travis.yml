@@ -6,7 +6,7 @@ php:
 env:
   global:
     - APP_ENV=testing
-    - APP_KEY=SomeRandomString
+    - APP_KEY=abcdefghijklmnopqrstuvwxyz123456
     - DB_CONNECTION=testing
     - DB_TEST_USERNAME=root
     - DB_TEST_PASSWORD=
