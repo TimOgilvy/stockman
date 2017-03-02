@@ -1,0 +1,28 @@
+load_balancer:
+    image: tutum/haproxy
+    links:
+        - web
+    ports:
+        - "80:80"
+
+cache:
+    image: redis
+
+database:
+    image: mysql
+    environment:
+        - MYSQL_ROOT_PASSWORD=SuperSecretPassword123
+        - MYSQL_DATABASE=laravel
+
+web:
+    image: andrewmclagan/nginx-hhvm
+    links:
+        - database
+        - cache
+    volumes:
+        - ./:/var/www
+    environment:
+        - APP_ENV=production
+        - DB_DATABASE=laravel 
+        - DB_PASSWORD=SuperSecretPassword123
+        - VIRTUAL_HOST=laravel.local     
