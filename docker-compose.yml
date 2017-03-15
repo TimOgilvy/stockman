@@ -25,4 +25,4 @@ web:
         - APP_ENV=production
         - DB_DATABASE=laravel 
         - DB_PASSWORD=SuperSecretPassword123
-        - VIRTUAL_HOST=laravel.local     
+        - VIRTUAL_HOST=laravel.local
