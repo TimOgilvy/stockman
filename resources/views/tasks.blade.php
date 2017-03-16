@@ -67,7 +67,7 @@
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
 
-                                    <button>Delete Task</button>
+                                    <button class="btn btn-danger">Delete Task</button>
                                 </form>
                             </td>
                         </tr>

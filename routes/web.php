@@ -11,54 +11,63 @@
 |
 */
 
-use App\Task;
 use Illuminate\Http\Request;
+use App\Task;
 
+/**
+ * Landing Page
+ */
 Route::get('/', function () {
     return view('welcome');
 });
 
 /**
- * Display All Tasks
+ * Authenticated routes
  */
-Route::get('/tasks', function () {
-    $tasks = Task::orderBy('created_at', 'asc')->get();
+Route::group(['middleware' => 'auth'], function () {
 
-    return view('tasks', [
-        'tasks' => $tasks
-    ]);
-});
+    Route::get('/home', 'HomeController@index');
 
-/**
- * Add A New Task
- */
-Route::post('/task', function (Request $request) {
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|max:255',
-    ]);
+    /**
+     * Display All Tasks
+     */
+    Route::get('/tasks', function () {
+        $tasks = Task::orderBy('created_at', 'asc')->get();
 
-    if ($validator->fails()) {
-        return redirect('/')
-            ->withInput()
-            ->withErrors($validator);
-    }
+        return view('tasks', [
+            'tasks' => $tasks
+        ]);
+    });
 
-    $task = new Task;
-    $task->name = $request->name;
-    $task->save();
+    /**
+     * Add A New Task
+     */
+    Route::post('/task', function (Request $request) {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+        ]);
 
-    return redirect('/tasks');
-});
+        if ($validator->fails()) {
+            return redirect('/')
+                ->withInput()
+                ->withErrors($validator);
+        }
 
-/**
- * Delete An Existing Task
- */
-Route::delete('/task/{id}', function ($id) {
-    Task::findOrFail($id)->delete();
+        $task = new Task;
+        $task->name = $request->name;
+        $task->save();
 
-    return redirect('/tasks');
+        return redirect('/tasks');
+    });
+
+    /**
+     * Delete An Existing Task
+     */
+    Route::delete('/task/{id}', function ($id) {
+        Task::findOrFail($id)->delete();
+        return redirect('/tasks');
+    });
+
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');
